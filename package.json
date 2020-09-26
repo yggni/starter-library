@@ -6,9 +6,11 @@
     "license": "MIT",
     "repository": "https://github.com/yggni/environment",
     "publishConfig": {
-        "registry": "https://npm.pkg.github.com"
+        "registry": "https://npm.pkg.github.com",
+        "access": "public"
     },
     "scripts": {
+        "reset": "rm -rf .git",
         "prebuild": "rm -rf dist",
         "build": "tsc -p tsconfig.build.json",
         "build:release": "npm run package:release",
@@ -16,14 +18,13 @@
         "package:release": "cp package.json README.md dist",
         "format": "prettier \"./**/*.ts\" --write",
         "lint": "eslint './**/*.ts' --fix",
-        "prepublish:next": "npm run build",
-        "publish:next": "npm publish dist --access public --tag next",
-        "prepublish:npm": "npm run build",
-        "publish:npm": "npm publish dist --access public",
         "test": "jest",
         "test:dev": "jest --watch",
         "prerelease": "npm run build:release",
-        "release": "standard-version"
+        "release": "standard-version",
+        "postrelease": "npm run publish:release",
+        "prepublish:release": "git push --follow-tags origin main",
+        "publish:release": "npm publish dist"
     },
     "dependencies": {
         "@nestjs/mapped-types": "0.1.0"
