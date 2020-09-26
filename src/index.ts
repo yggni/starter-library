@@ -1,2 +1,2 @@
-export * from './lib/starter.module';
-export * from './lib/starter.service';
+export * from './lib/starter/starter.module';
+export * from './lib/starter/starter.service';
