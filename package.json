@@ -14,8 +14,8 @@
         "build:release": "npm run package:release",
         "prebuild:release": "npm run build",
         "package:release": "cp package.json README.md dist",
-        "format": "prettier \"lib/**/*.ts\" --write",
-        "lint": "eslint 'lib/**/*.ts' --fix",
+        "format": "prettier \"./**/*.ts\" --write",
+        "lint": "eslint './**/*.ts' --fix",
         "prepublish:next": "npm run build",
         "publish:next": "npm publish dist --access public --tag next",
         "prepublish:npm": "npm run build",
@@ -23,7 +23,7 @@
         "test": "jest",
         "test:dev": "jest --watch",
         "prerelease": "npm run build:release",
-        "release": "release-it"
+        "release": "standard-version"
     },
     "dependencies": {
         "@nestjs/mapped-types": "0.1.0"
@@ -48,12 +48,12 @@
         "eslint-plugin-import": "2.22.0",
         "express": "4.17.1",
         "fastify-swagger": "3.3.0",
-        "husky": "4.3.0",
+        "husky": "^4.3.0",
         "jest": "26.4.2",
         "lint-staged": "10.4.0",
         "prettier": "2.1.2",
         "reflect-metadata": "0.1.13",
-        "release-it": "14.0.3",
+        "standard-version": "^9.0.0",
         "swagger-parser": "10.0.2",
         "swagger-ui-express": "4.1.4",
         "ts-jest": "26.4.0",
@@ -67,7 +67,8 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged && npm t",
+            "pre-commit": "lint-staged && npm test",
+            "pre-push": "npm test",
             "commit-msg": "commitlint -c .commitlintrc.json -E HUSKY_GIT_PARAMS"
         }
     }
