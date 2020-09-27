@@ -4,7 +4,7 @@
     "description": "Library Template for @yggni libs",
     "author": "Getúlio Magela Silva",
     "license": "MIT",
-    "repository": "https://github.com/yggni/environment",
+    "repository": "https://github.com/yggni/starter-library",
     "publishConfig": {
         "registry": "https://npm.pkg.github.com",
         "access": "public"
